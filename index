@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to C.B. Books!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff7f7;
+      color: #1f2937;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      color: #b91c1c;
+      font-size: 2.5rem;
+    }
+
+    .latest-release {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+    }
+
+    .latest-release a img {
+      width: 200px;
+      border-radius: 1rem;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .latest-release a img:hover {
+      transform: scale(1.05);
+    }
+
+    .footer {
+      font-size: 0.875rem;
+      color: #4b5563;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer img {
+      max-width: 1em;
+      max-height: 1em;
+      margin-left: 0.2em;
+      vertical-align: text-bottom;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to C.B. Books!</h1>
+    <p>A place where you read for free!</p>
+  </header>
+
+  <section class="latest-release">
+    <a href="newhome.html">
+      <img src="NewHome.png" alt="New Home Book Cover" />
+    </a>
+  </section>
+
+  <div class="footer">
+    <p>
+      <span>New Home</span> © 2025 by <span>C.B. Books</span> is licensed under
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+      <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" />
+      <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" />
+      <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" />
+      <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="ND" />
+    </p>
+  </div>
+</body>
+</html>
