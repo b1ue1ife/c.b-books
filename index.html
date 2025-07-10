@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Welcome to C.B. Books!</title>
   <style>
-    body {
+    /* Hide page content by default */
+    #content {
+      display: none;
       font-family: Arial, sans-serif;
       background-color: #fff7f7;
       color: #1f2937;
@@ -13,35 +15,66 @@
       padding: 2rem;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    header h1 {
-      color: #b91c1c;
-      font-size: 2.5rem;
-    }
-
-    .latest-release {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    /* Style for the PIN entry overlay */
+    #pinOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff7f7;
       display: flex;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      z-index: 9999;
     }
 
-    .latest-release a img {
-      width: 200px;
+    #pinOverlay input {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      margin-top: 1rem;
+      border: 2px solid #b91c1c;
+      border-radius: 0.5rem;
+      width: 150px;
+      text-align: center;
+    }
+
+    #pinOverlay button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    #pinOverlay button:hover {
+      background-color: #b91c1c;
+    }
+
+    #errorMsg {
+      color: red;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      height: 1.2rem;
+    }
+
+    /* Container and styling for main content */
+    .latest-release {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .latest-release img {
+      max-width: 250px;
       border-radius: 1rem;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
     }
 
-    .latest-release a img:hover {
+    .latest-release img:hover {
       transform: scale(1.05);
     }
 
@@ -61,26 +94,55 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to C.B. Books!</h1>
-    <p>A place where you read for free!</p>
-  </header>
-
-  <section class="latest-release">
-    <a href="newhome.html">
-      <img src="NewHome.png" alt="New Home Book Cover" />
-    </a>
-  </section>
-
-  <div class="footer">
-    <p>
-      <span>New Home</span> © 2025 by <span>C.B. Books</span> is licensed under
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
-      <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" />
-      <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" />
-      <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" />
-      <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="ND" />
-    </p>
+  <div id="pinOverlay">
+    <h2>Enter PIN to access the site</h2>
+    <input type="password" id="pinInput" maxlength="4" placeholder="Enter PIN" />
+    <button onclick="checkPin()">Submit</button>
+    <div id="errorMsg"></div>
   </div>
+
+  <div id="content">
+    <header>
+      <h1>Welcome to C.B. Books!</h1>
+      <p>A place where you read for free!</p>
+    </header>
+
+    <section class="latest-release">
+      <a href="newhome.html" tabindex="0" aria-label="Go to New Home book page">
+        <img src="NewHome.png" alt="New Home Book Cover" />
+      </a>
+    </section>
+
+    <div class="footer">
+      <p>
+        <span>New Home</span> © 2025 by <span>C.B. Books</span> is licensed under
+        <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" />
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" />
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" />
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="ND" />
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function checkPin() {
+      const pin = document.getElementById('pinInput').value;
+      const errorMsg = document.getElementById('errorMsg');
+      if(pin === '2011') {
+        document.getElementById('pinOverlay').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      } else {
+        errorMsg.textContent = 'Incorrect PIN. Please try again.';
+      }
+    }
+
+    // Allow pressing Enter key to submit PIN
+    document.getElementById('pinInput').addEventListener('keydown', function(event) {
+      if(event.key === 'Enter') {
+        checkPin();
+      }
+    });
+  </script>
 </body>
 </html>
