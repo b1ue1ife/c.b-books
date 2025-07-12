@@ -79,6 +79,37 @@
       margin-left: 0.2em;
       vertical-align: text-bottom;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-buttons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .modal-buttons button {
+      padding: 0.5rem 1rem;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +123,7 @@
       <p><strong>By C.B. Books</strong></p>
       <p>A powerful coming-of-age story about Nathaniel, a boy who moves from Florida to Las Vegas and ends up entangled in gangs, survival, and finding his own strength.</p>
 
-      <button onclick="showLicensePopup()">Download PDF</button>
+      <button onclick="showModal()">Download PDF</button>
     </div>
   </div>
 
@@ -107,12 +138,28 @@
     </p>
   </div>
 
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p>By downloading this book, you agree to follow the rules of the Creative Commons license (CC BY-NC-ND 4.0). You may not sell, alter, or redistribute this work without permission.</p>
+      <div class="modal-buttons">
+        <button onclick="agreeDownload()">I Agree</button>
+        <button onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    function showLicensePopup() {
-      const agree = confirm("By clicking OK, you agree to follow the terms of the CC BY-NC-ND 4.0 license. You may not use this work commercially or create derivatives.");
-      if (agree) {
-        window.location.href = 'New Home.pdf';
-      }
+    function showModal() {
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function agreeDownload() {
+      closeModal();
+      window.location.href = 'New Home.pdf';
     }
   </script>
 </body>
