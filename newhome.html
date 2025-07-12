@@ -51,16 +51,6 @@
       line-height: 1.6;
     }
 
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 0.5rem;
-    }
-
     button {
       padding: 0.7rem 1.5rem;
       font-size: 1rem;
@@ -102,9 +92,7 @@
       <p><strong>By C.B. Books</strong></p>
       <p>A powerful coming-of-age story about Nathaniel, a boy who moves from Florida to Las Vegas and ends up entangled in gangs, survival, and finding his own strength.</p>
 
-      <label><input type="checkbox" id="agreeBox"> I agree to follow all the terms of the license (CC BY-NC-ND 4.0) and understand that violating them may result in legal consequences.</label>
-
-      <button onclick="downloadBook()">Download PDF</button>
+      <button onclick="showLicensePopup()">Download PDF</button>
     </div>
   </div>
 
@@ -120,13 +108,11 @@
   </div>
 
   <script>
-    function downloadBook() {
-      const agreeBox = document.getElementById('agreeBox');
-      if (!agreeBox.checked) {
-        alert('You must agree to the license terms before downloading.');
-        return;
+    function showLicensePopup() {
+      const agree = confirm("By clicking OK, you agree to follow the terms of the CC BY-NC-ND 4.0 license. You may not use this work commercially or create derivatives.");
+      if (agree) {
+        window.location.href = 'New Home.pdf';
       }
-      window.location.href = 'New Home.pdf';
     }
   </script>
 </body>
