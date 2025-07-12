@@ -16,7 +16,7 @@
     .container {
       display: flex;
       flex-wrap: wrap;
-      flex-direction: row-reverse;
+      flex-direction: row;
       max-width: 1000px;
       margin: auto;
       background: #ffffff;
@@ -51,14 +51,14 @@
       line-height: 1.6;
     }
 
-    input[type="email"] {
-      padding: 0.7rem;
-      font-size: 1rem;
-      width: 80%;
-      max-width: 400px;
+    label {
+      display: block;
       margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
     }
 
     button {
@@ -102,16 +102,15 @@
       <p><strong>By C.B. Books</strong></p>
       <p>A powerful coming-of-age story about Nathaniel, a boy who moves from Florida to Las Vegas and ends up entangled in gangs, survival, and finding his own strength.</p>
 
-      <p>Enter your email to download the full PDF for free:</p>
-      <input type="email" id="emailInput" placeholder="you@example.com" />
-      <br />
+      <label><input type="checkbox" id="agreeBox"> I agree to follow all the terms of the license (CC BY-NC-ND 4.0) and understand that violating them may result in legal consequences.</label>
+
       <button onclick="downloadBook()">Download PDF</button>
     </div>
   </div>
 
   <div class="footer">
     <p>
-      New Home © 2025 by C.B. Books is licensed under
+      <span>New Home</span> © 2025 by <span>C.B. Books</span> is licensed under
       <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
       <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" />
       <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" />
@@ -122,9 +121,9 @@
 
   <script>
     function downloadBook() {
-      const email = document.getElementById('emailInput').value;
-      if (!email) {
-        alert('Please enter your email.');
+      const agreeBox = document.getElementById('agreeBox');
+      if (!agreeBox.checked) {
+        alert('You must agree to the license terms before downloading.');
         return;
       }
       window.location.href = 'New Home.pdf';
