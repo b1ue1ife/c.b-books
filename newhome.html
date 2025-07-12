@@ -83,32 +83,22 @@
     .modal {
       display: none;
       position: fixed;
-      z-index: 999;
-      left: 0;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
     }
 
     .modal-content {
-      background-color: white;
-      margin: 15% auto;
+      background: white;
       padding: 2rem;
       border-radius: 1rem;
-      width: 90%;
-      max-width: 400px;
+      max-width: 500px;
       text-align: center;
-    }
-
-    .modal-buttons {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .modal-buttons button {
-      padding: 0.5rem 1rem;
     }
   </style>
 </head>
@@ -122,8 +112,7 @@
       <h1>New Home</h1>
       <p><strong>By C.B. Books</strong></p>
       <p>A powerful coming-of-age story about Nathaniel, a boy who moves from Florida to Las Vegas and ends up entangled in gangs, survival, and finding his own strength.</p>
-
-      <button onclick="showModal()">Download PDF</button>
+      <button onclick="openModal()">Download PDF</button>
     </div>
   </div>
 
@@ -138,26 +127,25 @@
     </p>
   </div>
 
-  <div id="modal" class="modal">
+  <div class="modal" id="licenseModal">
     <div class="modal-content">
-      <p>By downloading this book, you agree to follow the rules of the Creative Commons license (CC BY-NC-ND 4.0). You may not sell, alter, or redistribute this work without permission.</p>
-      <div class="modal-buttons">
-        <button onclick="agreeDownload()">I Agree</button>
-        <button onclick="closeModal()">Cancel</button>
-      </div>
+      <h2>License Agreement</h2>
+      <p>By downloading this book, you agree to follow all rules in the license (CC BY-NC-ND 4.0). Unauthorized use, redistribution, or modification may result in legal consequences.</p>
+      <button onclick="acceptLicense()">I Agree</button>
+      <button onclick="closeModal()">Cancel</button>
     </div>
   </div>
 
   <script>
-    function showModal() {
-      document.getElementById('modal').style.display = 'block';
+    function openModal() {
+      document.getElementById('licenseModal').style.display = 'flex';
     }
 
     function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+      document.getElementById('licenseModal').style.display = 'none';
     }
 
-    function agreeDownload() {
+    function acceptLicense() {
       closeModal();
       window.location.href = 'New Home.pdf';
     }
